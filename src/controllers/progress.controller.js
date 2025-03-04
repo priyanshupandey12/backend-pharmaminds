@@ -103,8 +103,14 @@ const markAsCompleted = async (req, res) => {
 
     let courseProgress = await Progress.findOne({ courseId, userId });
 
+ 
     if (!courseProgress) {
-      return res.status(404).json({ message: "Progress not found" });
+      courseProgress = new Progress({
+        courseId,
+        userId,
+        lectureProgress: [],
+        completed: false
+      });
     }
 
 
@@ -140,10 +146,16 @@ const markAsInCompleted = async (req, res) => {
     const { courseId, lectureId } = req.params;
     const userId = req.user._id;
 
-    let courseProgress = await Progress.findOne({ courseId, userId });
+   let courseProgress = await Progress.findOne({ courseId, userId });
 
+    
     if (!courseProgress) {
-      return res.status(404).json({ message: "Progress not found" });
+      courseProgress = new Progress({
+        courseId,
+        userId,
+        lectureProgress: [],
+        completed: false
+      });
     }
 
   
