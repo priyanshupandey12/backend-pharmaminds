@@ -77,8 +77,9 @@ const loginUser = async (req, res) => {
    
     res.cookie('token', token, {
       httpOnly: true, 
-      secure: true, 
-      maxAge: 3600000,
+      secure: process.env.NODE_ENV === "production", 
+      maxAge: 24 * 60 * 60 * 1000, // 24h
+      sameSite: "None" 
     });
     const userData = user.toObject();
     delete userData.password; 
