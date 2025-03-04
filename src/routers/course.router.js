@@ -21,8 +21,8 @@ router.route('/:id').delete(authorizeRole(['admin']),deleteCourse);
 router.route('/publish/:courseId').patch(authorizeRole(['admin']),togglePublishCourse);
 
 router.route('/:courseId/lectures').post(authorizeRole(['admin']),upload.single('video'),createLecture);
-router.route('/:courseId/lectures').get(authorizeRole(['admin']),getlecture);
-router.route('/:courseId/lectures/:lectureId').get(authorizeRole(['admin']),getLectureById);
+router.route('/:courseId/lectures').get(authorizeRole(['admin','student']),getlecture);
+router.route('/:courseId/lectures/:lectureId').get(authorizeRole(['admin','student']),getLectureById);
 router.route('/:courseId/lectures/:lectureId').patch(authorizeRole(['admin']),upload.single('video'),updateLecture)
 router.route('/:lectureId/videos/:videoId').delete(authorizeRole(['admin']),deleteLectureVideo)
 
