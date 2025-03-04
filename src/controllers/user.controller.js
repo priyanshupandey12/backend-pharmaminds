@@ -96,8 +96,11 @@ const loginUser = async (req, res) => {
 
 const logoutUser =async (req, res) => {
   try {
-    res.cookie('token', '', {maxAge: 0 
-  })
+  res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,  
+      sameSite: "none",  
+    });
   return res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
     console.error(error);
