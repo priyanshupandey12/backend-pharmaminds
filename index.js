@@ -5,7 +5,7 @@ const connectDB=require('./src/utils/database');
 const cors=require('cors');
 require('dotenv').config()
 app.use(cors({
-  origin:'https://pharmaminds.onrender.com/',
+  origin:'https://localhost:5173',
   credentials:true
 }))
 
